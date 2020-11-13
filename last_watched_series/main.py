@@ -1,8 +1,11 @@
 import sys
 import click
 import pandas as pd
+import pathlib
 
-PATH_TO_OUTPUT = "output/out.csv"
+PATH_TO_OUTPUT = "output/"
+FILE_NAME = "out.csv"
+
 
 
 @click.group()
@@ -70,7 +73,7 @@ def remove(title_id):
 @main.command()
 def show():
     """
-    Show all titles, paths and series
+    Show all titles
     """
     # Load the dataframe
     loaded_df = load_df()
@@ -96,14 +99,19 @@ def add_s_to_df(s, df):
 # Return 0 if file not found
 def load_df():
     try:
-        return pd.read_csv(PATH_TO_OUTPUT,  index_col=0)
+        return pd.read_csv(PATH_TO_OUTPUT + FILE_NAME,  index_col=0)
     except FileNotFoundError:
         return 0
 
 
 # Save df dataframe to PATH_TO_OUTPUT path
 def save_df(df):
-    df.to_csv(PATH_TO_OUTPUT)
+    try:
+        df.to_csv(PATH_TO_OUTPUT + FILE_NAME)
+    except FileNotFoundError:
+        pathlib.Path(PATH_TO_OUTPUT).mkdir(parents=True, exist_ok=True)
+        df.to_csv(PATH_TO_OUTPUT + FILE_NAME)
+        return 0
 
 
 # Main method
