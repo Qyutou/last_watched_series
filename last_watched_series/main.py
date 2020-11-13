@@ -7,7 +7,6 @@ PATH_TO_OUTPUT = "output/"
 FILE_NAME = "out.csv"
 
 
-
 @click.group()
 @click.version_option("0.1.0")
 def main():
@@ -36,6 +35,7 @@ def add(name, path):
 
     # Save the result data frame
     save_df(df)
+    click.echo("Successfully added")
 
 
 # Remove title from the list by id
@@ -50,7 +50,7 @@ def remove(title_id):
     # Load the dataframe
     loaded_df = load_df()
     # Check is dataframe loaded successfully
-    if isinstance(loaded_df, int):
+    if isinstance(loaded_df, int) or loaded_df.empty:
         click.echo("There are currently no any titles")
     else:
         # Check if this title is in the list
@@ -64,8 +64,10 @@ def remove(title_id):
 
             # Print results
             click.echo("Successfully removed")
-            click.echo(loaded_df)
+            if not loaded_df.empty:
+                click.echo(loaded_df)
         else:
+            # Print error
             click.echo("Can't find title with id = %d" % title_id)
 
 
@@ -78,7 +80,7 @@ def show():
     # Load the dataframe
     loaded_df = load_df()
     # Check is dataframe loaded successfully
-    if isinstance(loaded_df, int):
+    if isinstance(loaded_df, int) or loaded_df.empty:
         click.echo("There are currently no any titles")
     else:
         click.echo(loaded_df.to_string())
