@@ -10,7 +10,9 @@ FILE_NAME = "out.csv"
 @click.group()
 @click.version_option("0.1.0")
 def main():
-    # CLI for control the last watched series
+    """
+    CLI for control the last watched series
+    """
     pass
 
 
@@ -20,7 +22,7 @@ def main():
 @click.argument("path")
 def add(name, path):
     """
-    Add new title to the list
+    Add new title to the list.
     """
     # Create series
     s = create_correct_s(name, path)
@@ -75,7 +77,7 @@ def remove(title_id):
 @main.command()
 def show():
     """
-    Show all titles
+    Show all titles.
     """
     # Load the dataframe
     loaded_df = load_df()
@@ -86,9 +88,26 @@ def show():
         click.echo(loaded_df.to_string())
 
 
+@main.command()
+@click.argument("title_id", type=click.INT)
+def play_next(title_id):
+    """
+    Play next series of certain title.
+    """
+    loaded_df = load_df()
+    if isinstance(loaded_df, int) or loaded_df.empty:
+        click.echo("There are currently no any titles")
+    else:
+        click.echo("The title you are now watching:")
+        value = int(loaded_df.at[title_id, "Series"]) + 1
+        loaded_df.at[title_id, "Series"] = value
+        click.echo(loaded_df.loc[title_id].to_string())
+        save_df(loaded_df)
+
+
 # Create new series with name, path, and series columns
 def create_correct_s(name, path):
-    return pd.Series([name, path, 1], index=["name", "path", "series"])
+    return pd.Series([name, path, 0], index=["Name", "Path", "Series"])
 
 
 # Add series to the existing dataframe
