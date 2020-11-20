@@ -27,7 +27,7 @@ setup(
     install_requires=install_requires,
     entry_points="""
         [console_scripts]
-        last_watched_series=last_watched_series.__main__:main
+        last_watched_series=last_watched_series.main:main
         """,
     long_description=README,
     long_description_content_type="text/markdown",
