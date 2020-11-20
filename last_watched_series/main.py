@@ -46,10 +46,8 @@ def add(name):
 @click.argument("title_id")
 def remove(title_id):
     """
-    Remove title from list by title's id or name.
-    \n
-    Arguments:
-        \n
+    Remove title from list by title's id or name.\n
+    Arguments:\n
         TITLE_ID  name or id of title
     """
 
