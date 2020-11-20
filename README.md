@@ -3,12 +3,12 @@ A simple command-line application for memorizing the last watched series.
 
 # Installation
 
-## Using Pip
+### 1. Using Pip
 ```bash
   $ pip install last_watched_series
 ```
 
-## Manual
+### 2. Manual
 ```bash
   $ git clone https://github.com/Qyutou/last_watched_series.git
   $ cd last_watched_series
