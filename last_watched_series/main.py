@@ -45,6 +45,10 @@ def add(name):
 def remove(title_id):
     """
     Remove title from list by title's id or name.
+    \n
+    Arguments:
+        \n
+        TITLE_ID  name or id of title
     """
 
     # Load the dataframe
@@ -92,10 +96,9 @@ def show():
 
 
 @main.command()
-@click.argument("title_id", type=click.INT)
+@click.argument("title_id")
 @click.argument("series", type=click.INT)
 def set(title_id, series):
-    """Set certain series to the title."""
 
     # Load dataframe with all titles
     loaded_df = load_df()
