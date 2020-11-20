@@ -39,6 +39,7 @@ def add(name):
     # Save the result data frame
     save_df(df)
     click.echo("Successfully added.")
+    click.echo(df)
 
 
 # Remove title from the list by id
@@ -58,8 +59,13 @@ def remove(title_id):
         click.echo("There are currently no any titles.")
     else:
         # Check if this title is in the list
-        if title_id in loaded_df.values or int(title_id) in loaded_df.index:
-
+        b = False
+        if title_id in loaded_df.values:
+            b = True
+        elif isinstance(title_id, int):
+            if int(title_id) in loaded_df.index:
+                b = True
+        if b:
             # Remove this title
             if title_id.isdigit():
                 id = int(title_id)
@@ -75,6 +81,7 @@ def remove(title_id):
             click.echo("Successfully removed")
             if not loaded_df.empty:
                 click.echo(loaded_df)
+
         else:
             # Print error
             click.echo("Can't find title with id = " + title_id)
