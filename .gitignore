@@ -15,6 +15,9 @@ dist/
 lib/
 lib64/
 var/
+*.egg-info/
+*.egg
+MANIFEST
 
 # Environments
 .env
