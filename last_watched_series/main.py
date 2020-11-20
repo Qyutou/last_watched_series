@@ -8,7 +8,7 @@ FILE_NAME = "out.csv"
 
 
 @click.group()
-@click.version_option("0.1.0")
+@click.version_option("1.0.0")
 def main():
     """
     Simple command-line application to manage the last watched series
