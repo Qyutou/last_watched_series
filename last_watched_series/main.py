@@ -112,7 +112,7 @@ def set(title_id, series):
         click.echo("There are currently no titles.")
     else:
         if title_id.isdigit():
-            loaded_df.at[title_id, "Series"] = series
+            loaded_df.at[int(title_id), "Series"] = series
         else:
             loaded_series = loaded_df[loaded_df['Name'] == title_id]
             loaded_df.at[loaded_series.index, "Series"] = series
