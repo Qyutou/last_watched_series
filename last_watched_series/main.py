@@ -99,7 +99,12 @@ def show():
 @click.argument("title_id")
 @click.argument("series", type=click.INT)
 def set(title_id, series):
-
+    """
+    Set certain series to the title.\n
+    Arguments:\n
+        TITLE_ID  Name or id of title.\n
+        SERIES    New value.
+    """
     # Load dataframe with all titles
     loaded_df = load_df()
 
@@ -139,7 +144,7 @@ def save_df(df):
     except FileNotFoundError:
         pathlib.Path(PATH_TO_OUTPUT).mkdir(parents=True, exist_ok=True)
         df.to_csv(PATH_TO_OUTPUT + FILE_NAME)
-        return 0
+    return 0
 
 
 # Main method
