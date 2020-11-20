@@ -11,7 +11,7 @@ FILE_NAME = "out.csv"
 @click.version_option("0.1.0")
 def main():
     """
-    CLI for control the last watched series
+    Simple command-line application to manage the last watched series
     """
     pass
 
