@@ -19,7 +19,7 @@ dependency_links = [x.strip().replace('git+', '') for x in all_requirements if '
 
 # Setup
 setup(
-    authon="Qyutou",
+    author="Qyutou",
     name="last_watched_series",
     description="A simple commandline application to memorizing the last watched series",
     version="1.0.0",
