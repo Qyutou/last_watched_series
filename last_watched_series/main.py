@@ -21,7 +21,9 @@ def main():
 @click.argument("name")
 def add(name):
     """
-    Add new title to the list.
+    Add new title to the list.\n
+    Arguments:\n
+        NAME - name of the title.
     """
     # Create series
     s = create_correct_s(name)
