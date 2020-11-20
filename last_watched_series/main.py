@@ -111,9 +111,12 @@ def set(title_id, series):
     if isinstance(loaded_df, int) or loaded_df.empty:
         click.echo("There are currently no titles.")
     else:
-        loaded_df.at[title_id, "Series"] = series
+        if title_id.isdigit():
+            loaded_df.at[title_id, "Series"] = series
+        else:
+            loaded_series = loaded_df[loaded_df['Name'] == title_id]
+            loaded_df.at[loaded_series.index, "Series"] = series
         click.echo(loaded_df)
-        click.echo(loaded_df.loc[title_id].to_string())
         save_df(loaded_df)
 
 
