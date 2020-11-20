@@ -96,7 +96,7 @@ def set(title_id, series):
     # Load dataframe with all titles
     loaded_df = load_df()
 
-    if loaded_df.empty:
+    if isinstance(loaded_df, int) or loaded_df.empty:
         click.echo("There are currently no titles.")
     else:
         loaded_df.at[title_id, "Series"] = series
