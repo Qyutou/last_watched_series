@@ -41,11 +41,10 @@ def add(name):
 
 # Remove title from the list by id
 @main.command()
-@click.argument("title_id", type=click.INT)
+@click.argument("title_id")
 def remove(title_id):
     """
-    Remove title from list by id.
-    id can be name of title or id.
+    Remove title from list by title's id or name.
     """
 
     # Load the dataframe
@@ -55,10 +54,15 @@ def remove(title_id):
         click.echo("There are currently no any titles.")
     else:
         # Check if this title is in the list
-        if title_id in loaded_df.index:
+        if title_id in loaded_df.values or title_id in loaded_df.index:
 
             # Remove this title
-            loaded_df = loaded_df.drop(index=title_id)
+            if title_id.isdigit():
+                id = int(title_id)
+                loaded_df.drop(id, inplace=True)
+            else:
+                index_names = loaded_df[loaded_df['Name'] == title_id].index
+                loaded_df.drop(index_names, inplace=True)
 
             # Save new dataframe
             save_df(loaded_df)
@@ -69,7 +73,7 @@ def remove(title_id):
                 click.echo(loaded_df)
         else:
             # Print error
-            click.echo("Can't find title with id = %d" % title_id)
+            click.echo("Can't find title with id = " + title_id)
 
 
 # Print all titles, paths and series
