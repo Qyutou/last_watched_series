@@ -37,7 +37,7 @@ def add(name, path):
 
     # Save the result data frame
     save_df(df)
-    click.echo("Successfully added")
+    click.echo("Successfully added.")
 
 
 # Remove title from the list by id
@@ -53,7 +53,7 @@ def remove(title_id):
     loaded_df = load_df()
     # Check is dataframe loaded successfully
     if isinstance(loaded_df, int) or loaded_df.empty:
-        click.echo("There are currently no any titles")
+        click.echo("There are currently no any titles.")
     else:
         # Check if this title is in the list
         if title_id in loaded_df.index:
@@ -83,24 +83,25 @@ def show():
     loaded_df = load_df()
     # Check is dataframe loaded successfully
     if isinstance(loaded_df, int) or loaded_df.empty:
-        click.echo("There are currently no any titles")
+        click.echo("There are currently no any titles.")
     else:
-        click.echo(loaded_df.to_string())
+        click.echo(loaded_df.get(["Name", "Series"]).to_string())
 
 
 @main.command()
 @click.argument("title_id", type=click.INT)
-def play_next(title_id):
-    """
-    Play next series of certain title.
-    """
+@click.argument("series", type=click.INT)
+def set(title_id, series):
+    """Set certain series to the title."""
+
+    # Load dataframe with all titles
     loaded_df = load_df()
-    if isinstance(loaded_df, int) or loaded_df.empty:
-        click.echo("There are currently no any titles")
+
+    if loaded_df.empty:
+        click.echo("There are currently no titles.")
     else:
-        click.echo("The title you are now watching:")
-        value = int(loaded_df.at[title_id, "Series"]) + 1
-        loaded_df.at[title_id, "Series"] = value
+        loaded_df.at[title_id, "Series"] = series
+        click.echo(loaded_df)
         click.echo(loaded_df.loc[title_id].to_string())
         save_df(loaded_df)
 
