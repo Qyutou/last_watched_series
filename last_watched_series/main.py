@@ -19,13 +19,12 @@ def main():
 # Add new title to the list
 @main.command()
 @click.argument("name")
-@click.argument("path")
-def add(name, path):
+def add(name):
     """
     Add new title to the list.
     """
     # Create series
-    s = create_correct_s(name, path)
+    s = create_correct_s(name)
     # Load the dataframe
     loaded_df = load_df()
 
@@ -107,8 +106,8 @@ def set(title_id, series):
 
 
 # Create new series with name, path, and series columns
-def create_correct_s(name, path):
-    return pd.Series([name, path, 0], index=["Name", "Path", "Series"])
+def create_correct_s(name):
+    return pd.Series([name, 0], index=["Name", "Series"])
 
 
 # Add series to the existing dataframe
