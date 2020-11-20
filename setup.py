@@ -6,6 +6,10 @@ import pathlib
 # Directory containing this file
 HERE = pathlib.Path(__file__).parent
 
+# Get README for long description
+README = (HERE / "README.md").read_text()
+
+
 # Load all required modules
 with open(path.join(HERE, "requirements.txt"), encoding="utf-8") as f:
     all_requirements = f.read().split("\n")
@@ -25,6 +29,8 @@ setup(
         [console_scripts]
         last_watched_series=last_watched_series.__main__:main
         """,
+    long_description=README,
+    long_description_content_type="text/markdown",
     author_email="qyutou@gmail.com",
     license="MIT",
     url="https://github.com/Qyutou/last_watched_series"
