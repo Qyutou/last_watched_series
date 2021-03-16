@@ -1,5 +1,5 @@
 # last_watched_series
-A simple command-line application for memorizing the last watched series.
+A simple command-line application to manage the last watched series.
 
 # Installation
 
