@@ -60,13 +60,8 @@ def remove(title_id):
         click.echo("There are currently no any titles.")
     else:
         # Check if this title is in the list
-        b = False
-        if title_id in loaded_df.values:
-            b = True
-        elif isinstance(title_id, int):
-            if int(title_id) in loaded_df.index:
-                b = True
-        if b:
+        click.echo(loaded_df.size)
+        if loaded_df.size/2 >= int(title_id):
             # Remove this title
             if title_id.isdigit():
                 id = int(title_id)
@@ -79,9 +74,13 @@ def remove(title_id):
             save_df(loaded_df)
 
             # Print results
-            click.echo("Successfully removed")
-            if not loaded_df.empty:
-                click.echo(loaded_df)
+            click.echo("Successfully removed:")
+
+            # Show the results
+            if isinstance(loaded_df, int) or loaded_df.empty:
+                click.echo("Now there are no any titles.")
+            else:
+                click.echo(loaded_df.get(["Name", "Series"]).to_string())
 
         else:
             # Print error
