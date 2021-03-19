@@ -3,6 +3,7 @@ import click
 import pandas as pd
 import pathlib
 
+
 PATH_TO_OUTPUT = "output/"
 FILE_NAME = "out.csv"
 
@@ -118,11 +119,14 @@ def set(title_id, series):
     if isinstance(loaded_df, int) or loaded_df.empty:
         click.echo("There are currently no titles.")
     else:
+        click.echo("- Old variant:")
+        click.echo(loaded_df)
         if title_id.isdigit():
             loaded_df.at[int(title_id), "Series"] = series
         else:
             loaded_series = loaded_df[loaded_df['Name'] == title_id]
             loaded_df.at[loaded_series.index, "Series"] = series
+        click.echo("\n- New variant:")
         click.echo(loaded_df)
         save_df(loaded_df)
 
