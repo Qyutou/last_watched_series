@@ -60,7 +60,6 @@ def remove(title_id):
         click.echo("There are currently no any titles.")
     else:
         # Check if this title is in the list
-        click.echo(loaded_df.size)
         if loaded_df.size/2 >= int(title_id):
             # Remove this title
             if title_id.isdigit():
