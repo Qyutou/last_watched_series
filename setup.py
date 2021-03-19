@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 from os import path
 from io import open
-import pathlib
+from pathlib import Path
 
 # Directory containing this file
-HERE = pathlib.Path(__file__).parent
+HERE = Path(__file__).parent
 
 # Get README for long description
 README = (HERE / "README.md").read_text()
@@ -22,7 +22,7 @@ setup(
     author="Qyutou",
     name="last_watched_series",
     description="A simple commandline application to memorizing the last watched series",
-    version="1.0.0",
+    version="1.0.1",
     packages=find_packages(),
     install_requires=install_requires,
     entry_points="""
