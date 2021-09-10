@@ -3,7 +3,6 @@ A simple command-line application to manage the last watched series.
 
 # Installation
 
-### 1. Manual
 ```bash
   $ git clone https://github.com/Qyutou/last_watched_series.git
   $ cd last_watched_series
